@@ -9,14 +9,22 @@ public class VendingMachine {
 
 	private BigDecimal currentBalance;
 	private List<Coin> coinReturn;
-	public List<Product> dispensedProducts;
-	public String display;
+	private List<Product> dispensedProducts;
+	private String display;
 	
 	public VendingMachine() {
 		currentBalance = new BigDecimal(0);
 		coinReturn = new ArrayList<Coin>();
 		dispensedProducts = new ArrayList<Product>();
 		display = new String();
+	}
+	
+	public List<Product> getDispensedProducts() {
+		return dispensedProducts;
+	}
+
+	public String getDisplay() {
+		return display;
 	}
 	
 	public List<Coin> getCoinReturn() {

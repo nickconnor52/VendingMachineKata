@@ -91,7 +91,7 @@ public class VendingMachineTest {
 		vendingMachine.insertCoin(coin);
 		Product cola = new ColaProduct();
 		vendingMachine.dispenseSelection(cola);
-		Assert.assertEquals(1, vendingMachine.dispensedProducts.size());
+		Assert.assertEquals(1, vendingMachine.getDispensedProducts().size());
 		
 	}
 	
@@ -104,7 +104,7 @@ public class VendingMachineTest {
 		vendingMachine.insertCoin(coin);
 		Product chips = new ChipsProduct();
 		vendingMachine.dispenseSelection(chips);
-		Assert.assertEquals("Chips", vendingMachine.dispensedProducts.get(0).getItemName());
+		Assert.assertEquals("Chips", vendingMachine.getDispensedProducts().get(0).getItemName());
 		
 	}
 	
@@ -114,7 +114,7 @@ public class VendingMachineTest {
 		vendingMachine.insertCoin(coin);
 		Product candy = new CandyProduct();
 		vendingMachine.dispenseSelection(candy);
-		Assert.assertEquals("PRICE - $0.65", vendingMachine.display);
+		Assert.assertEquals("PRICE - $0.65", vendingMachine.getDisplay());
 		
 	}
 	
