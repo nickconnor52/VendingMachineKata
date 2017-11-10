@@ -93,6 +93,18 @@ public class VendingMachineTest {
 		vendingMachine.dispenseSelection(cola);
 		Assert.assertEquals(1, vendingMachine.dispensedProducts.size());
 		
+	}
+	
+	@Test
+	public void selectingChipsWithAHighBalanceDispensesChips() {
+		coin = new Coin(QUARTER_WEIGHT, QUARTER_DIAMETER);
+		vendingMachine.insertCoin(coin);
+		vendingMachine.insertCoin(coin);
+		vendingMachine.insertCoin(coin);
+		vendingMachine.insertCoin(coin);
+		Product chips = new ChipsProduct();
+		vendingMachine.dispenseSelection(chips);
+		Assert.assertEquals("Chips", vendingMachine.dispensedProducts.get(0).getItemName());
 		
 	}
 	
