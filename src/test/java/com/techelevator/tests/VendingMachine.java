@@ -12,6 +12,7 @@ public class VendingMachine {
 	private List<Product> dispensedProducts;
 	private String display;
 	
+	
 	public VendingMachine() {
 		currentBalance = new BigDecimal(0);
 		coinReturn = new ArrayList<Coin>();
@@ -69,11 +70,14 @@ public class VendingMachine {
 	public void dispenseSelection(Product product) {
 		if(selectProduct(product)) {
 			dispensedProducts.add(product);
+			currentBalance = currentBalance.subtract(product.getPrice());
 		} else {
 			display = "PRICE - $" + product.getPrice();
 		}
 		
 	}
+	
+	
 
 
 

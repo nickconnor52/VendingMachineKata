@@ -118,6 +118,18 @@ public class VendingMachineTest {
 		
 	}
 	
+	@Test
+	public void ifAnItemIsDispensedTheValueOfTheItemIsDecrementedFromTheCurrentBalance() {
+		coin = new Coin(QUARTER_WEIGHT, QUARTER_DIAMETER);
+		vendingMachine.insertCoin(coin);
+		vendingMachine.insertCoin(coin);
+		vendingMachine.insertCoin(coin);
+		vendingMachine.insertCoin(coin);
+		Product cola = new ColaProduct();
+		vendingMachine.dispenseSelection(cola);
+		Assert.assertEquals(new BigDecimal(0).setScale(2, RoundingMode.FLOOR), vendingMachine.getCurrentBalance());
+	}
+	
 	
 	
 	
