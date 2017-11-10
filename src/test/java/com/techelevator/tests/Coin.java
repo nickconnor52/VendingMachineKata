@@ -5,17 +5,9 @@ public class Coin {
 	private double weight;
 	private double diameter;
 	
-	public Coin() {
-		setWeight(0);
-		setDiameter(0);
-	}
-
-	public void setWeight(double weight) {
-		this.weight = weight;
-	}
-
-	public void setDiameter(double diameter) {
-		this.diameter = diameter;
+	public Coin(double coinWeight, double coinDiameter) {
+		weight = coinWeight;
+		diameter = coinDiameter;
 	}
 
 	public double getWeight() {
