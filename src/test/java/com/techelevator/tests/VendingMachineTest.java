@@ -9,6 +9,13 @@ import org.junit.Test;
 
 public class VendingMachineTest {
 	
+	private final double QUARTER_WEIGHT = 5.7;
+	private final double QUARTER_DIAMETER = .955;
+	private final double DIME_WEIGHT = 2.27;
+	private final double DIME_DIAMETER = .705;
+	private final double NICKEL_WEIGHT = 5.0;
+	private final double NICKEL_DIAMETER = .835;
+
 	private VendingMachine vendingMachine;
 	private Coin coin;
 	
