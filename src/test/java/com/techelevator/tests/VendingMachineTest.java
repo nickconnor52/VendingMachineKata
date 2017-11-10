@@ -31,5 +31,14 @@ public class VendingMachineTest {
 		Assert.assertEquals(new BigDecimal(.05).setScale(2, RoundingMode.FLOOR), vendingMachine.getCurrentBalance());
 		
 	}
+	
+	@Test
+	public void ifACoinIsInsertedThatIsInvalidItIsSentToTheCoinReturn() {
+		VendingMachine vendingMachine = new VendingMachine();
+		vendingMachine.insertCoin(1.6, .65);
+		Assert.assertEquals(1, vendingMachine.getCoinReturn().size());
+		Assert.assertEquals(1.6, vendingMachine.getCoinReturn().get(0).getWeight(), .01);
+		
+	}
 
 }

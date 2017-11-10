@@ -2,13 +2,21 @@ package com.techelevator.tests;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.ArrayList;
+import java.util.List;
 
 public class VendingMachine {
 
 	private BigDecimal currentBalance;
+	private List<Coin> coinReturn;
 	
 	public VendingMachine() {
 		currentBalance = new BigDecimal(0);
+		coinReturn = new ArrayList<Coin>();
+	}
+	
+	public List<Coin> getCoinReturn() {
+		return coinReturn;
 	}
 
 	public BigDecimal getCurrentBalance() {
@@ -26,9 +34,12 @@ public class VendingMachine {
 			currentBalance = currentBalance.add(new BigDecimal(.1).setScale(2, RoundingMode.FLOOR));
 		} else if (coinWeight == 5.0 && coinDiameter == .835){
 			currentBalance = currentBalance.add(new BigDecimal(.05).setScale(2, RoundingMode.FLOOR));
+		} else {
+			coinReturn.add(new Coin(coinWeight, coinDiameter));
 		}
 		
 	}
+
 
 	
 	
