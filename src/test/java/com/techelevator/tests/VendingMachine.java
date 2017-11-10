@@ -47,6 +47,18 @@ public class VendingMachine {
 		return "$" + currentBalance;
 	}
 
+	public String display() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public boolean selectProduct(Product product) {
+		if(currentBalance.compareTo(product.getPrice()) >= 0) {
+			return true;
+		}
+		return false;
+	}
+
 
 
 

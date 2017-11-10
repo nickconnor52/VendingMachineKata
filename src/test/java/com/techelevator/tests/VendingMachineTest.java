@@ -70,5 +70,17 @@ public class VendingMachineTest {
 		Assert.assertEquals("INSERT COIN", display);
 	}
 	
+	@Test
+	public void selectingCurrentProductWithHighEnoughBalanceReturnsTrueForSelection() {
+		coin = new Coin(QUARTER_WEIGHT, QUARTER_DIAMETER);
+		vendingMachine.insertCoin(coin);
+		vendingMachine.insertCoin(coin);
+		vendingMachine.insertCoin(coin);
+		vendingMachine.insertCoin(coin);
+		Product cola = new ColaProduct();
+		boolean select = vendingMachine.selectProduct(cola);
+		Assert.assertTrue(select);
+	}
+	
 
 }
