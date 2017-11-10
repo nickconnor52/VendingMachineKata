@@ -137,6 +137,20 @@ public class VendingMachineTest {
 		Assert.assertEquals(new BigDecimal(0).setScale(2, RoundingMode.FLOOR), vendingMachine.getCurrentBalance());
 	}
 	
+	@Test
+	public void anItemIsDispensedWithExtraBalanceInsertedAndChangeIsAddedToCoinReturn() {
+		coin = new Coin(QUARTER_WEIGHT, QUARTER_DIAMETER);
+		vendingMachine.insertCoin(coin);
+		vendingMachine.insertCoin(coin);
+		vendingMachine.insertCoin(coin);
+		vendingMachine.insertCoin(coin);
+		vendingMachine.insertCoin(new Coin(NICKEL_WEIGHT, NICKEL_DIAMETER));
+		Product cola = new ColaProduct();
+		vendingMachine.dispenseSelection(cola);
+		Assert.assertEquals(1, vendingMachine.getCoinReturn().size());
+		Assert.assertEquals(NICKEL_WEIGHT, vendingMachine.getCoinReturn().get(0).getWeight(), .01);
+	}
+	
 	
 	
 	
