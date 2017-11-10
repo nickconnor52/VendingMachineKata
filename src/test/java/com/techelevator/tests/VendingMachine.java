@@ -19,8 +19,12 @@ public class VendingMachine {
 		this.currentBalance = currentBalance;
 	}
 
-	public void insertCoin(double coinWeight, double coinSize) {
-		currentBalance = currentBalance.add(new BigDecimal(.25).setScale(2, RoundingMode.FLOOR));
+	public void insertCoin(double coinWeight, double coinDiameter) {
+		if(coinWeight == 5.7 && coinDiameter == .955) {
+			currentBalance = currentBalance.add(new BigDecimal(.25).setScale(2, RoundingMode.FLOOR));
+		} else {
+			currentBalance = currentBalance.add(new BigDecimal(.1).setScale(2, RoundingMode.FLOOR));
+		}
 		
 	}
 
