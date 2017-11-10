@@ -62,8 +62,12 @@ public class VendingMachineTest {
 		vendingMachine.insertCoin(coin);
 		String display = vendingMachine.displayBalance();
 		Assert.assertEquals("$0.25", display);
-			
-		
+	}
+	
+	@Test
+	public void ifCurrentBalanceIsZeroDisplayWillReadInsertCoin() {
+		String display = vendingMachine.displayBalance();
+		Assert.assertEquals("INSERT COIN", display);
 	}
 	
 

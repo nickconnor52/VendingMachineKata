@@ -41,6 +41,9 @@ public class VendingMachine {
 	}
 
 	public String displayBalance() {
+		if(currentBalance.equals(new BigDecimal(0))) {
+			return "INSERT COIN";
+		}
 		return "$" + currentBalance;
 	}
 
