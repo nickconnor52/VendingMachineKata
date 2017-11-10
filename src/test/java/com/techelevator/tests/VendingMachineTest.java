@@ -71,7 +71,7 @@ public class VendingMachineTest {
 	}
 	
 	@Test
-	public void selectingCurrentProductWithHighEnoughBalanceReturnsTrueForSelection() {
+	public void selectingColaProductWithHighEnoughBalanceReturnsTrueForSelection() {
 		coin = new Coin(QUARTER_WEIGHT, QUARTER_DIAMETER);
 		vendingMachine.insertCoin(coin);
 		vendingMachine.insertCoin(coin);
@@ -81,6 +81,22 @@ public class VendingMachineTest {
 		boolean select = vendingMachine.selectProduct(cola);
 		Assert.assertTrue(select);
 	}
+	
+	@Test
+	public void selectingProductWithLargeEnoughBalanceDispensesSelection() {
+		coin = new Coin(QUARTER_WEIGHT, QUARTER_DIAMETER);
+		vendingMachine.insertCoin(coin);
+		vendingMachine.insertCoin(coin);
+		vendingMachine.insertCoin(coin);
+		vendingMachine.insertCoin(coin);
+		Product cola = new ColaProduct();
+		vendingMachine.dispenseSelection(cola);
+		Assert.assertEquals(1, vendingMachine.dispensedProducts.size());
+		
+		
+	}
+	
+	
 	
 
 }

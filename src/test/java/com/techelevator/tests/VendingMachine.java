@@ -9,10 +9,12 @@ public class VendingMachine {
 
 	private BigDecimal currentBalance;
 	private List<Coin> coinReturn;
+	public List<Product> dispensedProducts;
 	
 	public VendingMachine() {
 		currentBalance = new BigDecimal(0);
 		coinReturn = new ArrayList<Coin>();
+		dispensedProducts = new ArrayList<Product>();
 	}
 	
 	public List<Coin> getCoinReturn() {
@@ -47,16 +49,18 @@ public class VendingMachine {
 		return "$" + currentBalance;
 	}
 
-	public String display() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	public boolean selectProduct(Product product) {
 		if(currentBalance.compareTo(product.getPrice()) >= 0) {
 			return true;
 		}
 		return false;
+	}
+
+	public void dispenseSelection(Product product) {
+		if(selectProduct(product)) {
+			dispensedProducts.add(product);
+		}
+		
 	}
 
 
