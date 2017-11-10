@@ -108,6 +108,17 @@ public class VendingMachineTest {
 		
 	}
 	
+	@Test
+	public void selectingCandyObjectWithInsufficientFundsDisplaysPriceAndItemPrice() {
+		coin = new Coin(QUARTER_WEIGHT, QUARTER_DIAMETER);
+		vendingMachine.insertCoin(coin);
+		Product candy = new CandyProduct();
+		vendingMachine.dispenseSelection(candy);
+		Assert.assertEquals("PRICE - $0.65", vendingMachine.display);
+		
+	}
+	
+	
 	
 	
 

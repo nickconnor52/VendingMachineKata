@@ -10,11 +10,13 @@ public class VendingMachine {
 	private BigDecimal currentBalance;
 	private List<Coin> coinReturn;
 	public List<Product> dispensedProducts;
+	public String display;
 	
 	public VendingMachine() {
 		currentBalance = new BigDecimal(0);
 		coinReturn = new ArrayList<Coin>();
 		dispensedProducts = new ArrayList<Product>();
+		display = new String();
 	}
 	
 	public List<Coin> getCoinReturn() {
@@ -59,6 +61,8 @@ public class VendingMachine {
 	public void dispenseSelection(Product product) {
 		if(selectProduct(product)) {
 			dispensedProducts.add(product);
+		} else {
+			display = "PRICE - $" + product.getPrice();
 		}
 		
 	}
