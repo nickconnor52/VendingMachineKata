@@ -11,7 +11,10 @@ public class VendingMachineTest {
 	@Test
 	public void ifACoinIsInsertedThatIsOfQuarterWeightTotalVendingMachineBalanceIsUpdatedAppropriately() {
 		VendingMachine vendingMachine = new VendingMachine();
-		vendingMachine.insertCoin(5.7, .955);
+		Coin coin = new Coin();
+		coin.setWeight(5.7);
+		coin.setDiameter(.955);
+		vendingMachine.insertCoin(coin);
 		Assert.assertEquals(new BigDecimal(.25).setScale(2, RoundingMode.FLOOR), vendingMachine.getCurrentBalance());
 		
 	}
@@ -19,7 +22,10 @@ public class VendingMachineTest {
 	@Test
 	public void ifACoinIsInsertedThatIsOfDimeWeightTotalVendingMachineBalanceIsUpdatedAppropriately() {
 		VendingMachine vendingMachine = new VendingMachine();
-		vendingMachine.insertCoin(2.27, .705);
+		Coin coin = new Coin();
+		coin.setWeight(2.27);
+		coin.setDiameter(.705);
+		vendingMachine.insertCoin(coin);
 		Assert.assertEquals(new BigDecimal(.10).setScale(2, RoundingMode.FLOOR), vendingMachine.getCurrentBalance());
 		
 	}
@@ -27,7 +33,10 @@ public class VendingMachineTest {
 	@Test
 	public void ifACoinIsInsertedThatIsOfNickelWeightTotalVendingMachineBalanceIsUpdatedAppropriately() {
 		VendingMachine vendingMachine = new VendingMachine();
-		vendingMachine.insertCoin(5.0, .835);
+		Coin coin = new Coin();
+		coin.setWeight(5.0);
+		coin.setDiameter(.835);
+		vendingMachine.insertCoin(coin);
 		Assert.assertEquals(new BigDecimal(.05).setScale(2, RoundingMode.FLOOR), vendingMachine.getCurrentBalance());
 		
 	}
@@ -35,10 +44,13 @@ public class VendingMachineTest {
 	@Test
 	public void ifACoinIsInsertedThatIsInvalidItIsSentToTheCoinReturn() {
 		VendingMachine vendingMachine = new VendingMachine();
-		vendingMachine.insertCoin(1.6, .65);
+		Coin coin = new Coin();
+		coin.setWeight(1.6);
+		coin.setDiameter(.65);
+		vendingMachine.insertCoin(coin);
 		Assert.assertEquals(1, vendingMachine.getCoinReturn().size());
 		Assert.assertEquals(1.6, vendingMachine.getCoinReturn().get(0).getWeight(), .01);
-		
 	}
+	
 
 }
