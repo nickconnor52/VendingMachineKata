@@ -4,14 +4,22 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 public class VendingMachineTest {
 	
+	private VendingMachine vendingMachine;
+	private Coin coin;
+	
+	@Before
+	public void setup() {
+		vendingMachine = new VendingMachine();
+		coin = new Coin();
+	}
+	
 	@Test
 	public void ifACoinIsInsertedThatIsOfQuarterWeightTotalVendingMachineBalanceIsUpdatedAppropriately() {
-		VendingMachine vendingMachine = new VendingMachine();
-		Coin coin = new Coin();
 		coin.setWeight(5.7);
 		coin.setDiameter(.955);
 		vendingMachine.insertCoin(coin);
@@ -21,8 +29,6 @@ public class VendingMachineTest {
 	
 	@Test
 	public void ifACoinIsInsertedThatIsOfDimeWeightTotalVendingMachineBalanceIsUpdatedAppropriately() {
-		VendingMachine vendingMachine = new VendingMachine();
-		Coin coin = new Coin();
 		coin.setWeight(2.27);
 		coin.setDiameter(.705);
 		vendingMachine.insertCoin(coin);
@@ -32,8 +38,6 @@ public class VendingMachineTest {
 	
 	@Test
 	public void ifACoinIsInsertedThatIsOfNickelWeightTotalVendingMachineBalanceIsUpdatedAppropriately() {
-		VendingMachine vendingMachine = new VendingMachine();
-		Coin coin = new Coin();
 		coin.setWeight(5.0);
 		coin.setDiameter(.835);
 		vendingMachine.insertCoin(coin);
@@ -43,8 +47,6 @@ public class VendingMachineTest {
 	
 	@Test
 	public void ifACoinIsInsertedThatIsInvalidItIsSentToTheCoinReturn() {
-		VendingMachine vendingMachine = new VendingMachine();
-		Coin coin = new Coin();
 		coin.setWeight(1.6);
 		coin.setDiameter(.65);
 		vendingMachine.insertCoin(coin);
