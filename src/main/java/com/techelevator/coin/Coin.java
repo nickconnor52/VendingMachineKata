@@ -1,4 +1,4 @@
-package com.techelevator.tests;
+package com.techelevator.coin;
 
 public class Coin {
 

@@ -1,9 +1,12 @@
-package com.techelevator.tests;
+package com.techelevator.vendingmachine;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.techelevator.coin.Coin;
+import com.techelevator.products.Product;
 
 public class VendingMachine {
 

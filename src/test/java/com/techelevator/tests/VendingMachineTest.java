@@ -7,6 +7,13 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.techelevator.coin.Coin;
+import com.techelevator.products.CandyProduct;
+import com.techelevator.products.ChipsProduct;
+import com.techelevator.products.ColaProduct;
+import com.techelevator.products.Product;
+import com.techelevator.vendingmachine.VendingMachine;
+
 public class VendingMachineTest {
 	
 	private final double QUARTER_WEIGHT = 5.7;
