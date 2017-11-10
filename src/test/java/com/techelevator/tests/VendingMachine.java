@@ -40,6 +40,10 @@ public class VendingMachine {
 		
 	}
 
+	public String displayBalance() {
+		return "$" + currentBalance;
+	}
+
 
 
 

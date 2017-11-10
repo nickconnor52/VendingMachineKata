@@ -56,5 +56,15 @@ public class VendingMachineTest {
 		Assert.assertEquals(1.6, vendingMachine.getCoinReturn().get(0).getWeight(), .01);
 	}
 	
+	@Test
+	public void ifQuarterIsInsertedDisplayWillReadCurrentBalanceOf25Cents() {
+		coin = new Coin(QUARTER_WEIGHT, QUARTER_DIAMETER);
+		vendingMachine.insertCoin(coin);
+		String display = vendingMachine.displayBalance();
+		Assert.assertEquals("$0.25", display);
+			
+		
+	}
+	
 
 }
