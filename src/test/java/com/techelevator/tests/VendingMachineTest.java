@@ -289,6 +289,18 @@ public class VendingMachineTest {
 		Assert.assertEquals("INSERT COIN", vendingMachine.getDisplay());
 	}
 	
+	@Test
+	public void exactChangeNeededLogicWorksForCandyWith3QuartersInserted() {
+		// Adding quarters to machine to give it a coin collection, not representative of current user inputting money
+		vendingMachine.insertCoin(quarter);
+		vendingMachine.insertCoin(quarter);
+		vendingMachine.insertCoin(quarter);
+		Product candy = new CandyProduct();
+		vendingMachine.dispenseSelection(candy);
+		Assert.assertTrue(vendingMachine.exactChangeNeeded(candy));
+		
+	}
+	
 	
 	
 	
