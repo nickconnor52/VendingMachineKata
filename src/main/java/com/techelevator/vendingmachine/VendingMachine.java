@@ -63,6 +63,7 @@ public class VendingMachine {
 			insertedCoins.add(new Coin(DIME_WEIGHT, DIME_DIAMETER));
 			currentBalance = currentBalance.add(new BigDecimal(.1).setScale(2, RoundingMode.FLOOR));
 		} else if (coin.getWeight() == 5.0 && coin.getDiameter() == .835){
+			insertedCoins.add(new Coin(NICKEL_WEIGHT, NICKEL_DIAMETER));
 			currentBalance = currentBalance.add(new BigDecimal(.05).setScale(2, RoundingMode.FLOOR));
 		} else {
 			coinReturn.add(coin);

@@ -207,6 +207,15 @@ public class VendingMachineTest {
 		Assert.assertEquals(DIME_WEIGHT, vendingMachine.getCoinReturn().get(0).getWeight(), .01);
 	}
 	
+	@Test
+	public void returnCoinButtonReturnsAllTheInputtedNickelsFromMachine() {
+		coin = new Coin(NICKEL_WEIGHT, NICKEL_DIAMETER);
+		vendingMachine.insertCoin(coin);
+		vendingMachine.pressCoinReturn();
+		Assert.assertEquals(1, vendingMachine.getCoinReturn().size());
+		Assert.assertEquals(NICKEL_WEIGHT, vendingMachine.getCoinReturn().get(0).getWeight(), .01);
+	}
+	
 	
 	
 	
