@@ -234,6 +234,25 @@ public class VendingMachineTest {
 		Assert.assertEquals("INSERT COIN", vendingMachine.getDisplay());
 	}
 	
+	@Test
+	public void dispensingAProductThatIsOutOfStockTheMachineDisplaysSOLDOUTAndDoesNotDispense() {
+		vendingMachine.insertCoin(quarter);
+		vendingMachine.insertCoin(quarter);
+		Product chips = new ChipsProduct();
+		vendingMachine.dispenseSelection(chips);
+		vendingMachine.insertCoin(quarter);
+		vendingMachine.insertCoin(quarter);
+		vendingMachine.dispenseSelection(chips);
+		vendingMachine.insertCoin(quarter);
+		vendingMachine.insertCoin(quarter);
+		vendingMachine.dispenseSelection(chips);
+		vendingMachine.insertCoin(quarter);
+		vendingMachine.insertCoin(quarter);
+		vendingMachine.dispenseSelection(chips);
+		Assert.assertEquals(3, vendingMachine.getDispensedProducts().size());
+		Assert.assertEquals("SOLD OUT", vendingMachine.getDisplay());
+	}
+	
 	
 	
 	

@@ -6,9 +6,19 @@ public class Product {
 
 	private BigDecimal price;
 	private String itemName;
+	public int quantity;
 	
 	public Product() {
 		setPrice(new BigDecimal(0));
+		quantity = 3;
+	}
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void decrementQuantity() {
+		quantity--;
 	}
 
 	public BigDecimal getPrice() {

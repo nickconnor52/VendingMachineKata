@@ -84,10 +84,17 @@ public class VendingMachine {
 		}
 		return false;
 	}
+	
+	public boolean productInStock(Product product) {
+		return product.getQuantity() > 0;
+	}
 
 	public void dispenseSelection(Product product) {
-		if(selectProduct(product)) {
+		if(!productInStock(product)) {
+			display = "SOLD OUT";
+		} else if(selectProduct(product)) {
 			dispensedProducts.add(product);
+			product.decrementQuantity();
 			currentBalance = currentBalance.subtract(product.getPrice());
 			generateCoinReturn();
 		} else {
@@ -112,6 +119,7 @@ public class VendingMachine {
 		}
 		
 	}
+	
 	public void pressCoinReturn() {
 		for(int i = 0; i < insertedCoins.size(); i++ ) {
 			coinReturn.add(insertedCoins.get(i));
