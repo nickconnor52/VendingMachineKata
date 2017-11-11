@@ -197,6 +197,14 @@ public class VendingMachineTest {
 		
 	}
 	
+	@Test
+	public void returnCoinButtonReturnsAllTheInputtedChangeFromMachine() {
+		coin = new Coin(QUARTER_WEIGHT, QUARTER_DIAMETER);
+		vendingMachine.insertCoin(coin);
+		vendingMachine.pressCoinReturn();
+		Assert.assertEquals(1, vendingMachine.getCoinReturn().size());
+		Assert.assertEquals(QUARTER_WEIGHT, vendingMachine.getCoinReturn().get(0).getWeight(), .01);
+	}
 	
 	
 	

@@ -21,6 +21,7 @@ public class VendingMachine {
 	private List<Coin> coinReturn;
 	private List<Product> dispensedProducts;
 	private String display;
+	private List<Coin> insertedCoins;
 	
 	
 	public VendingMachine() {
@@ -28,6 +29,10 @@ public class VendingMachine {
 		coinReturn = new ArrayList<Coin>();
 		dispensedProducts = new ArrayList<Product>();
 		display = new String();
+		insertedCoins = new ArrayList<Coin>();
+	}
+	public List<Coin> getInsertedCoins(){
+		return insertedCoins;
 	}
 	
 	public List<Product> getDispensedProducts() {
@@ -52,6 +57,7 @@ public class VendingMachine {
 
 	public void insertCoin(Coin coin) {
 		if(coin.getWeight() == 5.7 && coin.getDiameter() == .955) {
+			insertedCoins.add(new Coin(QUARTER_WEIGHT, QUARTER_DIAMETER));
 			currentBalance = currentBalance.add(new BigDecimal(.25).setScale(2, RoundingMode.FLOOR));
 		} else if (coin.getWeight() == 2.27 && coin.getDiameter() == .705){
 			currentBalance = currentBalance.add(new BigDecimal(.1).setScale(2, RoundingMode.FLOOR));
@@ -103,6 +109,14 @@ public class VendingMachine {
 			}
 		}
 		
+	}
+	public void pressCoinReturn() {
+		for(int i = 0; i < insertedCoins.size(); i++ ) {
+			coinReturn.add(insertedCoins.get(i));
+		}
+		
+		insertedCoins.clear();
+	
 	}
 	
 	
