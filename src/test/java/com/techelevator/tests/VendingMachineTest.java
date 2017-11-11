@@ -166,6 +166,24 @@ public class VendingMachineTest {
 		
 	}
 	
+	@Test
+	public void anItemIsDispensedWithAnExtra15CentsWillReturnADimeAndNickel() {
+		coin = new Coin(QUARTER_WEIGHT, QUARTER_DIAMETER);
+		vendingMachine.insertCoin(coin);
+		vendingMachine.insertCoin(coin);
+		vendingMachine.insertCoin(coin);
+		vendingMachine.insertCoin(coin);
+		vendingMachine.insertCoin(new Coin(DIME_WEIGHT, DIME_DIAMETER));
+		vendingMachine.insertCoin(new Coin(NICKEL_WEIGHT, NICKEL_DIAMETER));
+		Product cola = new ColaProduct();
+		vendingMachine.dispenseSelection(cola);
+		Assert.assertEquals(2, vendingMachine.getCoinReturn().size());
+		Assert.assertEquals(DIME_WEIGHT, vendingMachine.getCoinReturn().get(0).getWeight(), .01);
+		Assert.assertEquals(NICKEL_WEIGHT, vendingMachine.getCoinReturn().get(1).getWeight(), .01);
+		
+	}
+	
+	
 	
 	
 	
