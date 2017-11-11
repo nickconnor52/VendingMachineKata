@@ -253,6 +253,25 @@ public class VendingMachineTest {
 		Assert.assertEquals("SOLD OUT", vendingMachine.getDisplay());
 	}
 	
+	@Test
+	public void selectingItemThatIsSoldOutAndThenCheckingDisplayAgainWillShowBalanceRemaining() {
+		vendingMachine.insertCoin(quarter);
+		vendingMachine.insertCoin(quarter);
+		Product chips = new ChipsProduct();
+		vendingMachine.dispenseSelection(chips);
+		vendingMachine.insertCoin(quarter);
+		vendingMachine.insertCoin(quarter);
+		vendingMachine.dispenseSelection(chips);
+		vendingMachine.insertCoin(quarter);
+		vendingMachine.insertCoin(quarter);
+		vendingMachine.dispenseSelection(chips);
+		vendingMachine.insertCoin(quarter);
+		vendingMachine.insertCoin(quarter);
+		vendingMachine.dispenseSelection(chips);
+		vendingMachine.dispenseSelection(chips);
+		Assert.assertEquals("$0.50", vendingMachine.getDisplay());
+	}
+	
 	
 	
 	

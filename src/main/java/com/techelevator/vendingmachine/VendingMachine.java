@@ -22,6 +22,7 @@ public class VendingMachine {
 	private List<Product> dispensedProducts;
 	private String display;
 	private List<Coin> insertedCoins;
+	private boolean soldOutDisplayCheck;
 	
 	
 	public VendingMachine() {
@@ -30,6 +31,7 @@ public class VendingMachine {
 		dispensedProducts = new ArrayList<Product>();
 		display = new String();
 		insertedCoins = new ArrayList<Coin>();
+		soldOutDisplayCheck = false;
 	}
 	public List<Coin> getInsertedCoins(){
 		return insertedCoins;
@@ -91,7 +93,13 @@ public class VendingMachine {
 
 	public void dispenseSelection(Product product) {
 		if(!productInStock(product)) {
-			display = "SOLD OUT";
+			if(soldOutDisplayCheck) {
+				display = displayBalance();
+				soldOutDisplayCheck = false;
+			} else {
+				display = "SOLD OUT";
+				soldOutDisplayCheck = true;
+			}
 		} else if(selectProduct(product)) {
 			dispensedProducts.add(product);
 			product.decrementQuantity();
