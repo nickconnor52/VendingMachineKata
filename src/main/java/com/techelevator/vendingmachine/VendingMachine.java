@@ -91,7 +91,10 @@ public class VendingMachine {
 	private void generateCoinReturn() {
 		coinReturn.clear();
 		while(currentBalance.compareTo(new BigDecimal(0).setScale(2, RoundingMode.FLOOR)) > 0) {
-			if(currentBalance.compareTo(new BigDecimal(.05).setScale(2, RoundingMode.FLOOR)) >= 0) {
+			if(currentBalance.compareTo(new BigDecimal(.1).setScale(2, RoundingMode.FLOOR)) >= 0) {
+				currentBalance = currentBalance.subtract(new BigDecimal(.1).setScale(2, RoundingMode.FLOOR));
+				coinReturn.add(new Coin(DIME_WEIGHT, DIME_DIAMETER));
+			} else if(currentBalance.compareTo(new BigDecimal(.05).setScale(2, RoundingMode.FLOOR)) >= 0) {
 				currentBalance = currentBalance.subtract(new BigDecimal(.05).setScale(2, RoundingMode.FLOOR));
 				coinReturn.add(new Coin(NICKEL_WEIGHT, NICKEL_DIAMETER));
 			}
