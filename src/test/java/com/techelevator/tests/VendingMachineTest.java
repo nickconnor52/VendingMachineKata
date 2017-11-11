@@ -26,11 +26,15 @@ public class VendingMachineTest {
 	private VendingMachine vendingMachine;
 	private Coin coin;
 	private Coin quarter;
+	private Coin nickel;
+	private Coin dime;
 	
 	@Before
 	public void setup() {
 		vendingMachine = new VendingMachine();
 		quarter = new Coin(QUARTER_WEIGHT, QUARTER_DIAMETER);
+		nickel = new Coin(NICKEL_WEIGHT, NICKEL_DIAMETER);
+		dime = new Coin(DIME_WEIGHT, DIME_DIAMETER);
 	}
 	
 	@Test
@@ -67,8 +71,7 @@ public class VendingMachineTest {
 	
 	@Test
 	public void ifQuarterIsInsertedDisplayWillReadCurrentBalanceOf25Cents() {
-		coin = new Coin(QUARTER_WEIGHT, QUARTER_DIAMETER);
-		vendingMachine.insertCoin(coin);
+		vendingMachine.insertCoin(quarter);
 		String display = vendingMachine.displayBalance();
 		Assert.assertEquals("$0.25", display);
 	}
@@ -140,7 +143,7 @@ public class VendingMachineTest {
 		vendingMachine.insertCoin(quarter);
 		vendingMachine.insertCoin(quarter);
 		vendingMachine.insertCoin(quarter);
-		vendingMachine.insertCoin(new Coin(NICKEL_WEIGHT, NICKEL_DIAMETER));
+		vendingMachine.insertCoin(nickel);
 		Product cola = new ColaProduct();
 		vendingMachine.dispenseSelection(cola);
 		Assert.assertEquals(1, vendingMachine.getCoinReturn().size());
@@ -153,7 +156,7 @@ public class VendingMachineTest {
 		vendingMachine.insertCoin(quarter);
 		vendingMachine.insertCoin(quarter);
 		vendingMachine.insertCoin(quarter);
-		vendingMachine.insertCoin(new Coin(DIME_WEIGHT, DIME_DIAMETER));
+		vendingMachine.insertCoin(dime);
 		Product cola = new ColaProduct();
 		vendingMachine.dispenseSelection(cola);
 		Assert.assertEquals(1, vendingMachine.getCoinReturn().size());
@@ -167,8 +170,8 @@ public class VendingMachineTest {
 		vendingMachine.insertCoin(quarter);
 		vendingMachine.insertCoin(quarter);
 		vendingMachine.insertCoin(quarter);
-		vendingMachine.insertCoin(new Coin(DIME_WEIGHT, DIME_DIAMETER));
-		vendingMachine.insertCoin(new Coin(NICKEL_WEIGHT, NICKEL_DIAMETER));
+		vendingMachine.insertCoin(dime);
+		vendingMachine.insertCoin(nickel);
 		Product cola = new ColaProduct();
 		vendingMachine.dispenseSelection(cola);
 		Assert.assertEquals(2, vendingMachine.getCoinReturn().size());
@@ -200,8 +203,7 @@ public class VendingMachineTest {
 	
 	@Test
 	public void returnCoinButtonReturnsAllTheInputtedDimesFromMachine() {
-		coin = new Coin(DIME_WEIGHT, DIME_DIAMETER);
-		vendingMachine.insertCoin(coin);
+		vendingMachine.insertCoin(dime);
 		vendingMachine.pressCoinReturn();
 		Assert.assertEquals(1, vendingMachine.getCoinReturn().size());
 		Assert.assertEquals(DIME_WEIGHT, vendingMachine.getCoinReturn().get(0).getWeight(), .01);
@@ -209,8 +211,7 @@ public class VendingMachineTest {
 	
 	@Test
 	public void returnCoinButtonReturnsAllTheInputtedNickelsFromMachine() {
-		coin = new Coin(NICKEL_WEIGHT, NICKEL_DIAMETER);
-		vendingMachine.insertCoin(coin);
+		vendingMachine.insertCoin(nickel);
 		vendingMachine.pressCoinReturn();
 		Assert.assertEquals(1, vendingMachine.getCoinReturn().size());
 		Assert.assertEquals(NICKEL_WEIGHT, vendingMachine.getCoinReturn().get(0).getWeight(), .01);
@@ -218,9 +219,8 @@ public class VendingMachineTest {
 	
 	@Test
 	public void returnCoinButtonReturnsAllTheInputtedNickelsAndQuartersFromMachine() {
-		coin = new Coin(NICKEL_WEIGHT, NICKEL_DIAMETER);
-		vendingMachine.insertCoin(coin);
-		vendingMachine.insertCoin(coin);
+		vendingMachine.insertCoin(nickel);
+		vendingMachine.insertCoin(nickel);
 		vendingMachine.insertCoin(quarter);
 		vendingMachine.pressCoinReturn();
 		Assert.assertEquals(3, vendingMachine.getCoinReturn().size());
