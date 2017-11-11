@@ -26,7 +26,7 @@ public class VendingMachine {
 	
 	
 	public VendingMachine() {
-		currentBalance = new BigDecimal(0);
+		currentBalance = new BigDecimal(0).setScale(2, RoundingMode.FLOOR);
 		coinReturn = new ArrayList<Coin>();
 		dispensedProducts = new ArrayList<Product>();
 		display = new String();
@@ -74,7 +74,7 @@ public class VendingMachine {
 	}
 
 	public String displayBalance() {
-		if(currentBalance.equals(new BigDecimal(0))) {
+		if(currentBalance.equals(new BigDecimal(0).setScale(2, RoundingMode.FLOOR))) {
 			return "INSERT COIN";
 		}
 		return "$" + currentBalance;
