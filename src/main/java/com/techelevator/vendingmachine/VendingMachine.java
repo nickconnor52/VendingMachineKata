@@ -159,9 +159,7 @@ public class VendingMachine {
 				runningTotal = runningTotal.add(new BigDecimal(.1).setScale(2, RoundingMode.FLOOR));
 				dIndex--;
 			}
-
 		}
-		
 		return !runningTotal.equals(product.getPrice());
 	}
 	
