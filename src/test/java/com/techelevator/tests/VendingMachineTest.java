@@ -227,6 +227,13 @@ public class VendingMachineTest {
 		Assert.assertEquals(NICKEL_WEIGHT, vendingMachine.getCoinReturn().get(0).getWeight(), .01);
 	}
 	
+	@Test
+	public void returnCoinButtonUpdatesDisplayToSayINSERTCOIN() {
+		vendingMachine.insertCoin(nickel);
+		vendingMachine.pressCoinReturn();
+		Assert.assertEquals("INSERT COIN", vendingMachine.getDisplay());
+	}
+	
 	
 	
 	

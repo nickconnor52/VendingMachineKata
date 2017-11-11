@@ -116,8 +116,8 @@ public class VendingMachine {
 		for(int i = 0; i < insertedCoins.size(); i++ ) {
 			coinReturn.add(insertedCoins.get(i));
 		}
-		
 		insertedCoins.clear();
+		display = "INSERT COIN";
 	
 	}
 	
