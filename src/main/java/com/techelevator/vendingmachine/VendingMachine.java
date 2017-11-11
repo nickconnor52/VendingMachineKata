@@ -140,15 +140,26 @@ public class VendingMachine {
 	public boolean exactChangeNeeded(Product product) {
 		BigDecimal runningTotal = new BigDecimal(0).setScale(2, RoundingMode.FLOOR);
 		List<Coin> quarterList = new ArrayList<Coin>();
+		List<Coin> dimeList = new ArrayList<Coin>();
 		for(int i = 0; i < insertedCoins.size(); i++) {
 			if(insertedCoins.get(i).getWeight() == QUARTER_WEIGHT) {
 				quarterList.add(new Coin(QUARTER_WEIGHT, QUARTER_DIAMETER));
 			}
+			if(insertedCoins.get(i).getWeight() == DIME_WEIGHT) {
+				dimeList.add(new Coin(DIME_WEIGHT, DIME_WEIGHT));
+			}
 		}
 		int qIndex = quarterList.size();
-		while(runningTotal.compareTo(product.getPrice()) < 0 && !(qIndex == 0) ) {
-			runningTotal.add(new BigDecimal(.25).setScale(2, RoundingMode.FLOOR));
-			qIndex--;
+		int dIndex = dimeList.size();
+		while(runningTotal.compareTo(product.getPrice()) < 0 && !(qIndex == 0 || dIndex == 0)  ) {
+			if(qIndex != 0 && product.getPrice().compareTo(new BigDecimal(.25).setScale(2, RoundingMode.FLOOR)) >= 0){
+				runningTotal.add(new BigDecimal(.25).setScale(2, RoundingMode.FLOOR));
+				qIndex--;
+			} else if(dIndex != 0 && product.getPrice().compareTo(new BigDecimal(.1).setScale(2, RoundingMode.FLOOR)) >= 0) {
+				runningTotal.add(new BigDecimal(.1).setScale(2, RoundingMode.FLOOR));
+				dIndex--;
+			}
+
 		}
 		
 		return !runningTotal.equals(product.getPrice());

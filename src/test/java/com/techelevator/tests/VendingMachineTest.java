@@ -301,6 +301,21 @@ public class VendingMachineTest {
 		
 	}
 	
+	@Test
+	public void exactChangeNeededLogicWorksForCandyWith7DimesInserted() {
+		// Adding quarters to machine to give it a coin collection, not representative of current user inputting money
+		vendingMachine.insertCoin(dime);
+		vendingMachine.insertCoin(dime);
+		vendingMachine.insertCoin(dime);
+		vendingMachine.insertCoin(dime);
+		vendingMachine.insertCoin(dime);
+		vendingMachine.insertCoin(dime);
+		vendingMachine.insertCoin(dime);
+		Product candy = new CandyProduct();
+		vendingMachine.dispenseSelection(candy);
+		Assert.assertTrue(vendingMachine.exactChangeNeeded(candy));
+		
+	}
 	
 	
 	
