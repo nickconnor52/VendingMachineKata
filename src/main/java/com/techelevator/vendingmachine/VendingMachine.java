@@ -151,12 +151,12 @@ public class VendingMachine {
 		}
 		int qIndex = quarterList.size();
 		int dIndex = dimeList.size();
-		while(runningTotal.compareTo(product.getPrice()) < 0 && !(qIndex == 0 || dIndex == 0)  ) {
+		while(runningTotal.compareTo(product.getPrice()) < 0 && !(qIndex == 0 && dIndex == 0)  ) {
 			if(qIndex != 0 && product.getPrice().compareTo(new BigDecimal(.25).setScale(2, RoundingMode.FLOOR)) >= 0){
-				runningTotal.add(new BigDecimal(.25).setScale(2, RoundingMode.FLOOR));
+				runningTotal = runningTotal.add(new BigDecimal(.25).setScale(2, RoundingMode.FLOOR));
 				qIndex--;
 			} else if(dIndex != 0 && product.getPrice().compareTo(new BigDecimal(.1).setScale(2, RoundingMode.FLOOR)) >= 0) {
-				runningTotal.add(new BigDecimal(.1).setScale(2, RoundingMode.FLOOR));
+				runningTotal = runningTotal.add(new BigDecimal(.1).setScale(2, RoundingMode.FLOOR));
 				dIndex--;
 			}
 
