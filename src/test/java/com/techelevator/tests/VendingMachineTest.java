@@ -25,10 +25,12 @@ public class VendingMachineTest {
 
 	private VendingMachine vendingMachine;
 	private Coin coin;
+	private Coin quarter;
 	
 	@Before
 	public void setup() {
 		vendingMachine = new VendingMachine();
+		quarter = new Coin(QUARTER_WEIGHT, QUARTER_DIAMETER);
 	}
 	
 	@Test
@@ -79,11 +81,10 @@ public class VendingMachineTest {
 	
 	@Test
 	public void selectingColaProductWithHighEnoughBalanceReturnsTrueForSelection() {
-		coin = new Coin(QUARTER_WEIGHT, QUARTER_DIAMETER);
-		vendingMachine.insertCoin(coin);
-		vendingMachine.insertCoin(coin);
-		vendingMachine.insertCoin(coin);
-		vendingMachine.insertCoin(coin);
+		vendingMachine.insertCoin(quarter);
+		vendingMachine.insertCoin(quarter);
+		vendingMachine.insertCoin(quarter);
+		vendingMachine.insertCoin(quarter);
 		Product cola = new ColaProduct();
 		boolean select = vendingMachine.selectProduct(cola);
 		Assert.assertTrue(select);
@@ -91,11 +92,10 @@ public class VendingMachineTest {
 	
 	@Test
 	public void selectingProductWithLargeEnoughBalanceDispensesSelection() {
-		coin = new Coin(QUARTER_WEIGHT, QUARTER_DIAMETER);
-		vendingMachine.insertCoin(coin);
-		vendingMachine.insertCoin(coin);
-		vendingMachine.insertCoin(coin);
-		vendingMachine.insertCoin(coin);
+		vendingMachine.insertCoin(quarter);
+		vendingMachine.insertCoin(quarter);
+		vendingMachine.insertCoin(quarter);
+		vendingMachine.insertCoin(quarter);
 		Product cola = new ColaProduct();
 		vendingMachine.dispenseSelection(cola);
 		Assert.assertEquals(1, vendingMachine.getDispensedProducts().size());
@@ -104,11 +104,10 @@ public class VendingMachineTest {
 	
 	@Test
 	public void selectingChipsWithAHighBalanceDispensesChips() {
-		coin = new Coin(QUARTER_WEIGHT, QUARTER_DIAMETER);
-		vendingMachine.insertCoin(coin);
-		vendingMachine.insertCoin(coin);
-		vendingMachine.insertCoin(coin);
-		vendingMachine.insertCoin(coin);
+		vendingMachine.insertCoin(quarter);
+		vendingMachine.insertCoin(quarter);
+		vendingMachine.insertCoin(quarter);
+		vendingMachine.insertCoin(quarter);
 		Product chips = new ChipsProduct();
 		vendingMachine.dispenseSelection(chips);
 		Assert.assertEquals("Chips", vendingMachine.getDispensedProducts().get(0).getItemName());
@@ -117,8 +116,7 @@ public class VendingMachineTest {
 	
 	@Test
 	public void selectingCandyObjectWithInsufficientFundsDisplaysPriceAndItemPrice() {
-		coin = new Coin(QUARTER_WEIGHT, QUARTER_DIAMETER);
-		vendingMachine.insertCoin(coin);
+		vendingMachine.insertCoin(quarter);
 		Product candy = new CandyProduct();
 		vendingMachine.dispenseSelection(candy);
 		Assert.assertEquals("PRICE - $0.65", vendingMachine.getDisplay());
@@ -127,11 +125,10 @@ public class VendingMachineTest {
 	
 	@Test
 	public void ifAnItemIsDispensedTheValueOfTheItemIsDecrementedFromTheCurrentBalance() {
-		coin = new Coin(QUARTER_WEIGHT, QUARTER_DIAMETER);
-		vendingMachine.insertCoin(coin);
-		vendingMachine.insertCoin(coin);
-		vendingMachine.insertCoin(coin);
-		vendingMachine.insertCoin(coin);
+		vendingMachine.insertCoin(quarter);
+		vendingMachine.insertCoin(quarter);
+		vendingMachine.insertCoin(quarter);
+		vendingMachine.insertCoin(quarter);
 		Product cola = new ColaProduct();
 		vendingMachine.dispenseSelection(cola);
 		Assert.assertEquals(new BigDecimal(0).setScale(2, RoundingMode.FLOOR), vendingMachine.getCurrentBalance());
@@ -139,11 +136,10 @@ public class VendingMachineTest {
 	
 	@Test
 	public void anItemIsDispensedWithExtraBalanceInsertedAndChangeIsAddedToCoinReturn() {
-		coin = new Coin(QUARTER_WEIGHT, QUARTER_DIAMETER);
-		vendingMachine.insertCoin(coin);
-		vendingMachine.insertCoin(coin);
-		vendingMachine.insertCoin(coin);
-		vendingMachine.insertCoin(coin);
+		vendingMachine.insertCoin(quarter);
+		vendingMachine.insertCoin(quarter);
+		vendingMachine.insertCoin(quarter);
+		vendingMachine.insertCoin(quarter);
 		vendingMachine.insertCoin(new Coin(NICKEL_WEIGHT, NICKEL_DIAMETER));
 		Product cola = new ColaProduct();
 		vendingMachine.dispenseSelection(cola);
@@ -153,11 +149,10 @@ public class VendingMachineTest {
 	
 	@Test
 	public void anItemIsDispensedWithAnExtra10CentsWillReturnADime() {
-		coin = new Coin(QUARTER_WEIGHT, QUARTER_DIAMETER);
-		vendingMachine.insertCoin(coin);
-		vendingMachine.insertCoin(coin);
-		vendingMachine.insertCoin(coin);
-		vendingMachine.insertCoin(coin);
+		vendingMachine.insertCoin(quarter);
+		vendingMachine.insertCoin(quarter);
+		vendingMachine.insertCoin(quarter);
+		vendingMachine.insertCoin(quarter);
 		vendingMachine.insertCoin(new Coin(DIME_WEIGHT, DIME_DIAMETER));
 		Product cola = new ColaProduct();
 		vendingMachine.dispenseSelection(cola);
@@ -168,11 +163,10 @@ public class VendingMachineTest {
 	
 	@Test
 	public void anItemIsDispensedWithAnExtra15CentsWillReturnADimeAndNickel() {
-		coin = new Coin(QUARTER_WEIGHT, QUARTER_DIAMETER);
-		vendingMachine.insertCoin(coin);
-		vendingMachine.insertCoin(coin);
-		vendingMachine.insertCoin(coin);
-		vendingMachine.insertCoin(coin);
+		vendingMachine.insertCoin(quarter);
+		vendingMachine.insertCoin(quarter);
+		vendingMachine.insertCoin(quarter);
+		vendingMachine.insertCoin(quarter);
 		vendingMachine.insertCoin(new Coin(DIME_WEIGHT, DIME_DIAMETER));
 		vendingMachine.insertCoin(new Coin(NICKEL_WEIGHT, NICKEL_DIAMETER));
 		Product cola = new ColaProduct();
@@ -184,12 +178,11 @@ public class VendingMachineTest {
 	
 	@Test
 	public void anItemIsDispensedWithAnExtra25CentsWillReturnAQuarter() {
-		coin = new Coin(QUARTER_WEIGHT, QUARTER_DIAMETER);
-		vendingMachine.insertCoin(coin);
-		vendingMachine.insertCoin(coin);
-		vendingMachine.insertCoin(coin);
-		vendingMachine.insertCoin(coin);
-		vendingMachine.insertCoin(coin);
+		vendingMachine.insertCoin(quarter);
+		vendingMachine.insertCoin(quarter);
+		vendingMachine.insertCoin(quarter);
+		vendingMachine.insertCoin(quarter);
+		vendingMachine.insertCoin(quarter);
 		Product cola = new ColaProduct();
 		vendingMachine.dispenseSelection(cola);
 		Assert.assertEquals(1, vendingMachine.getCoinReturn().size());
@@ -199,8 +192,7 @@ public class VendingMachineTest {
 	
 	@Test
 	public void returnCoinButtonReturnsAllTheInputtedChangeFromMachine() {
-		coin = new Coin(QUARTER_WEIGHT, QUARTER_DIAMETER);
-		vendingMachine.insertCoin(coin);
+		vendingMachine.insertCoin(quarter);
 		vendingMachine.pressCoinReturn();
 		Assert.assertEquals(1, vendingMachine.getCoinReturn().size());
 		Assert.assertEquals(QUARTER_WEIGHT, vendingMachine.getCoinReturn().get(0).getWeight(), .01);
