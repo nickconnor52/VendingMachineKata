@@ -198,6 +198,15 @@ public class VendingMachineTest {
 		Assert.assertEquals(QUARTER_WEIGHT, vendingMachine.getCoinReturn().get(0).getWeight(), .01);
 	}
 	
+	@Test
+	public void returnCoinButtonReturnsAllTheInputtedDimesFromMachine() {
+		coin = new Coin(DIME_WEIGHT, DIME_DIAMETER);
+		vendingMachine.insertCoin(coin);
+		vendingMachine.pressCoinReturn();
+		Assert.assertEquals(1, vendingMachine.getCoinReturn().size());
+		Assert.assertEquals(DIME_WEIGHT, vendingMachine.getCoinReturn().get(0).getWeight(), .01);
+	}
+	
 	
 	
 	
